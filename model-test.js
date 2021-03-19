@@ -1,24 +1,5 @@
 import { checkCode, getNewCode, Turn, Round, getShuffleOrder } from './model.js';
 
-// let codes = [];
-
-// let iterations = 40000000;
-// while (iterations --> 0) {
-//     codes.push(getNewCode());
-// }
-
-// /**
-//  * 
-//  * @param {number[][]} codeArr 
-//  */
-// function getFrequencies(codeArr, choices = 6) {
-//     let frequencies = Array(choices).fill(0);
-//     codeArr.forEach((code) => code.forEach((value) => frequencies[value]++))
-//     return frequencies;
-// }
-
-// console.log(getFrequencies(codes));
-
 /**
  * Determines the relative frequency of each choice vs. the expected frequency.
  * Returns an array of decimal percentages, one for each choice.
