@@ -26,6 +26,14 @@ export class Round {
     turnsRemaining() {
         return this.maxTurns - this.turns.length;
     }
+
+    /**
+     * 
+     * @param {number[]} guess
+     */
+    recordTurn(turn) {
+        this.turns.push(turn);
+    }
 }
 
 /**
