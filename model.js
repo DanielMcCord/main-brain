@@ -89,24 +89,32 @@ export function getNewCode(choices = 6, length = 4, casinoMode = false) {
 }
 
 /**
+ * An implementation of the Fisher-Yates-Knuth Shuffle algorithm.
+ * @param {*[]} array The array to be shuffled.
+ */
+function shuffleInPlace(array) {
+    // How the algorithm is supposed to work:
+    //     For each element of the array, swap the current element with 
+    //     a random element that has not been the current element prior to the
+    //     current iteration. Allowing an element to swap with itself is
+    //     mandatory, otherwise 
+
+    // Looping backwards makes the random number calculations simpler.
+    for (let i = array.length - 1; i >= 0; i--) {
+        // In general, it's best to use crypto for shuffles.
+        const r = getCryptoRandomInteger(i + 1);
+        // Sometimes, `r` will equal `i` here. This is expected behavior.
+        [array[i], array[r]] = [array[r], array[i]];
+    }
+}
+
+/**
  * Returns an array containing integers in range [0, length) in a random order.
- * Uses CSPRNG. Resistant to timing attacks.
- * @param {number} length
+ * @param {number} length An integer.
  */
 export function getShuffleOrder(length) {
-    // Pre-filling the array makes the runtime worse, but
-    // removes a potential vector for a timing attacks.
-    let order = Array(length).fill();
-    for (let i = 0; i < length; i++) {
-        while (true) {
-            const num = getCryptoRandomInteger(length);
-            if (!order.includes(num)) {
-                order[i] = (num);
-                break;
-            }
-        }
-    }
-
+    const order = [...Array(length).keys()];
+    shuffleInPlace(order);
     return order;
 }
 
