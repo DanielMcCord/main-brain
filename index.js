@@ -1,11 +1,10 @@
 import nodegui from '@nodegui/nodegui';
 import { readFileSync } from 'fs';
 import { checkCode, Round, Turn } from './model.js';
-import { Game, gameState, startRound } from './controller.js';
+import { gameState, startRound } from './controller.js';
 import { colors } from './colors.js';
 
-let game = new Game();
-let allowRepeats = true;
+startRound();
 
 /**
  * 
@@ -104,10 +103,12 @@ function initColorPalette (parentLayout, round, colors) {
 
 }
 
-
-function initGameBoard(parentLayout, stateObj, colors) {
-    const round = stateObj.round;
-
+/**
+ * 
+ * @param {*} parent 
+ * @param {Round} round 
+ */
+function initGameBoard(parentLayout, round, colors) {
     // for (const t of round.turns) {
     for (let i = 0; i < round.turns.length; i++) {
         const t = round.turns[i];
@@ -116,6 +117,7 @@ function initGameBoard(parentLayout, stateObj, colors) {
         parentLayout.addWidget(turn);
         turn.setLayout(new FlexLayout());
 
+        //
         const guess = new QWidget();
         turn.layout.addWidget(guess);
         guess.setObjectName('guess');
@@ -140,7 +142,7 @@ function initGameBoard(parentLayout, stateObj, colors) {
 }
 
 let colorPalette = new QWidget();
-initColorPalette(colorPalette, game.round.choices);
+initColorPalette(colorPalette, gameState.round.choices);
 
 centralWidget.layout.addWidget(colorPalette);
 
@@ -168,15 +170,10 @@ centralWidget.layout.addWidget(guessPanel);
 const sublayout = new FlexLayout();
 guessPanel.setLayout(sublayout);
 
+
 const checkbox = new QCheckBox();
 checkbox.setText('Allow repeats in the secret');
 centralWidget.layout.addWidget(checkbox);
-checkbox.addEventListener('clicked', (checked) => {
-    allowRepeats = checked;
-});
-
-
-
 
 
 console.log(win.size());
