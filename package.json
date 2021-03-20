@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@nodegui/nodegui": "^0.30.2",
+    "readline-sync": "^1.4.10"
+  },
+  "name": "main-brain",
+  "version": "1.0.0",
+  "description": "A code-guessing game.",
+  "main": "gui.js",
+  "devDependencies": {
+    "eslint": "^7.21.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel McCord",
+  "license": "GPL-3.0",
+  "type": "module"
+}
