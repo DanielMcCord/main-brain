@@ -16,6 +16,9 @@ export class Color {
         this.b = b;
     }
 
+    /**
+     * Helper method that returns a number[] with the rgb values.
+     */
     get values() {
         return [this.r, this.g, this.b];
     }
@@ -31,14 +34,6 @@ export class Color {
                 return '0'.repeat(2 - hex.length).concat(hex);
             })(channel)
         ), '#');
-    }
-
-    isGrayscale() {
-        // for (let i = 1, v = this.values; i < v.length; i++) if (v[i-1] !== v[i]) return false;
-
-        // return true;
-        const v = this.values;
-        return v.reduce((acc, _, i) => acc && Number(v[i-1]) === Number(v[i]));
     }
 }
 
@@ -57,9 +52,10 @@ const colorCodesAlphabetical = [
     [255, 255, 0], [255, 80, 5]
 ];
 
-// My personal semi-arbitrary ordering of the colors above.
-// At least the first six colors are colorblind-safe,
-// such that any dichromatic human would still see differences between them.
+/**
+ * My custom ordering of the above colors. The first six are colorblind-safe,
+ * except for monochromats (sorry; it's hard to make a game with colors work without colors).
+ */
 const customAlphabetOrder = [ 
     'R', 'W', 'Y', 'S', 'B', 'D', 'P', 'N',
     'M', 'V', 'Q', 'K', 'O', 'U', 'H', 'G', 'L', 'Z', 'C', 'A', 'I', 
@@ -67,7 +63,7 @@ const customAlphabetOrder = [
 ];
 
 /**
- * An array of 26 colors with good contrast.
+ * An array of 26 colors with good contrast, in a custom order.
  */
 export const colors = customAlphabetOrder.map(
     (letter) => new Color(

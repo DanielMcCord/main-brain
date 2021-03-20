@@ -13,14 +13,28 @@ export class Turn {
 
 export class Round {
     /**
-     * @param {number[]} secret
-     * @param {Turn[]} turns
-     * @param {number} maxTurns
+     * @param {number[]} [secret]
+     * @param {Turn[]} [turns]
+     * @param {number} [maxTurns]
+     * @param {boolean} [allowRepeats]
+     * @param {number} [codeLength]
+     * @param {number} [choices]
      */
-    constructor(secret, turns = [], maxTurns = 10) {
-        this.secret = secret;
+    constructor(
+        secret,
+        turns = [],
+        maxTurns = 10,
+        allowRepeats = true,
+        codeLength = 4,
+        choices = 6
+    ) {
         this.turns = turns;
         this.maxTurns = maxTurns;
+        this.allowRepeats = allowRepeats;
+        this.codeLength = codeLength;
+        this.choices = choices;
+        this.secret = secret ??
+            getNewCode(choices, codeLength, undefined, allowRepeats);
     }
 
     turnsRemaining() {

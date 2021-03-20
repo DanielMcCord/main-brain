@@ -1,0 +1,25 @@
+#guess > QPushButton {
+    border-radius: 25px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+
+#currentGuess > QPushButton {
+    border-radius: 25px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+
+#currentGuess > QWidget:hover {
+    border-color: white;
+}
+
+#guess > QRadioButton:checked {
+    border-color: white;
+}
+
+#guess > QRadioButton::indicator {
+   
+}
