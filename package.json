@@ -4,7 +4,7 @@
     "readline-sync": "^1.4.10"
   },
   "name": "main-brain",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "A code-guessing game.",
   "main": "gui.js",
   "devDependencies": {
