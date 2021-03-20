@@ -24,7 +24,7 @@ export class Game {
      */
     get status() {
         const r = this.round;
-        if (r.turns[this.turnsTaken - 1].result[0] == r.codeLength) return 'win';
+        if ((this.turnsTaken > 0) && (r.turns[this.turnsTaken - 1].result[0] == r.codeLength)) return 'win';
         else if (r.turns.length >= r.maxTurns) return 'lose';
         else return 'play';
     }
@@ -34,11 +34,12 @@ export class Game {
      */
     takeTurn() {
         const g = this.currentGuess;
-        if ((this.status === 'play') && isValidGuess(g)) {
+        if ((this.status === 'play') && isValidGuess(g, this.round.choices, this.round.codeLength)) {
             const r = this.round;
             r.recordTurn(new Turn(g, checkCode(r.secret, g)));
         }
     }
+
 }
 
 /**
@@ -60,10 +61,10 @@ function modifyPin(guess, index, value) {
  * @param {number} codeLength 
  */
 export function isValidGuess(guess, choices, codeLength) {
-    return (guess.length === codeLength) && guess.reduce(
+    return guess ? (guess.length === codeLength) && guess.reduce(
         (acc, current) => acc &&
             [...Array(choices).keys()].includes(current), true
-    );
+    ) : false;
 }
 
 export let gameState = {};

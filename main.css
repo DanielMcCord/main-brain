@@ -20,6 +20,6 @@
     border-color: white;
 }
 
-#guess > QRadioButton::indicator {
-   
+#guess > QPushButton:hover {
+    border-color: white;
 }
