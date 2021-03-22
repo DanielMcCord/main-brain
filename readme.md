@@ -1,4 +1,4 @@
-# main-brain
+# Main Brain
 A Node.js implementation of a popular code-breaking board game.
 
 The command-line version is working. The GUI is not usable yet.
