@@ -7,7 +7,7 @@ let choices;
 
 console.log('Welcome to the command-line version of Main Brain!');
 
-while (!allowRepeats) {
+while (allowRepeats == undefined) {
     const input = ''.concat(readline.question('Should the secret code be allowed to have repeated values? [y/n] > '));
     switch (input) {
         case 'y':
@@ -21,12 +21,12 @@ while (!allowRepeats) {
     }
 }
 
-while (!codeLength) {
+while (codeLength == undefined) {
     const input = Number(''.concat(readline.question('How long should the codes be? > ')));
     if (Number.isInteger(input) && input > 0) codeLength = input;
 }
 
-while (!choices) {
+while (choices == undefined) {
     const input = Number(''.concat(readline.question('How many choices for each position? > ')));
     if (Number.isInteger(input) && (input > 0) && (input <= 10)) choices = input;
 }
